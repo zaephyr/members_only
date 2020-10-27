@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body.font-body
+    .flex.w-full.h-20.bg-blue-300.items-center.text-xl.font-bold
+      a.home.ml-10(href="/") Home
+
+    if msg
+        h4.text-red-400.text-center Error: #{msg}
+        each error in errors
+            p.text-red-400.text-center #{error.msg}
+
+    .w-full.max-w-xs.mt-10.mx-auto
+        form(action="", method="post" class="bg-blue-300 shadow-md rounded px-8 pt-6 pb-8 ")
+            .mb-4   
+                label(class="form-label" for="first_name") First Name
+                input(class="form-cell" id="first_name" name="first_name" type="text" placeholder="John")
+            .mb-4   
+                label(class="form-label" for="Last_name") Last Name
+                input(class="form-cell" id="last_name" name="last_name" type="text" placeholder="Doe")
+            .mb-4
+                label(class="form-label" for="username") Username
+                input(class="form-cell" id="username" name="username" type="text" placeholder="Username")
+            .mb-6
+                label(class="form-label" for="password") Password
+                input(class="form-cell mb-3" id="password" name="password" type="password" placeholder="******************")
+            .flex.justify-center
+                button.btn.m-0(type="submit") Sign Up

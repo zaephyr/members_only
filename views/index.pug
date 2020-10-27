@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  if currentUser
+    form.flex.h-8.mt-24.items-center(method="POST" action="/message")
+      input(class="form-cell" id="message" name="message" type="textarea" placeholder="Write message here...")
+      div.btn.ml-3.bg-blue-400.whitespace-no-wrap(type="submit") Post It!
+
+    h1= currentUser.username 
+    h1= currentUser.status
+  p Welcome to #{title}
+
+  .card Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci asperiores fuga incidunt, ea nisi tempore quae eum vel. Ex commodi aut mollitia eaque soluta sed. Odit libero error ut recusandae.
+    .flex.justify-end.text-sm.font-thin
+      p by nekdo
+      p.ml-2 at 12:53, 22/10/20

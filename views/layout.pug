@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body.font-body
+    .flex.w-full.h-20.bg-blue-300.items-center.justify-between.text-xl.font-bold.fixed
+      a.home.ml-10(href="/") Home 
+      .flex.items-center
+        if currentUser
+          div.flex.items-center  
+            a.home.underline(href=`/users/${currentUser._id}/dashboard`) Welcome, #{currentUser.username}
+            a.btn.mr-8.ml-4(href="/log-out") LOG OUT
+        
+        else
+          form.flex(method="POST" action="/auth")
+            div.mr-5.w-32.text-sm
+              input(class="form-cell h-6 " id="username" name="username" required type="text" placeholder="Username")
+              input(class="form-cell h-6" id="password" name="password" required type="password" placeholder="******************")
+            button(href="#" class="btn" type="submit") Log In
+          a(href="/signup" class="btn mr-8 ml-4") Sign Up
+    .flex.flex-col.bg-gray-200.w-full.items-center.h-full.min-h-screen       
+      block content
+    

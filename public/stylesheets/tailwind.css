@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.btn {
+    @apply px-3 py-2 border-2 rounded-2xl border-blue-600 text-gray-100;
+}
+
+.btn:hover {
+    @apply cursor-pointer bg-blue-600 transition ease-in-out duration-500;
+}
+
+.home {
+    @apply text-gray-100;
+}
+
+.home:hover {
+    @apply cursor-pointer transform scale-110 transition ease-in duration-500;
+}
+
+.form-label {
+    @apply block text-gray-100 text-sm font-bold mb-2;
+}
+
+.form-cell {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.form-cell:focus {
+    @apply outline-none shadow-outline;
+}
+
+.card {
+    @apply w-1/2 bg-blue-300 text-gray-100 rounded-md p-2;
+}
