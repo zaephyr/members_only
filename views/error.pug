@@ -1,6 +1,7 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+
+  h1.mt-24.mx-10= message
+  h2.mx-10= error.status
+  pre.mx-10.whitespace-pre-wrap #{error.stack}

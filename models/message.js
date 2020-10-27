@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
-import { format } from 'date-fns';
+var moment = require('moment');
+var dayjs = require('dayjs');
 
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
-    title: { type: String, required: true, maxlength: 20 },
-    timestamp: { type: Date },
-    text: { type: String, required: true, maxlength: 256 },
-    author: { type: Schema.Types.ObjectId, ref: 'Member', required: true },
+    timestamp: { type: Date, default: Date.now() },
+    message: { type: String, required: true, maxlength: 256 },
+    member: { type: Schema.Types.ObjectId, ref: 'Member', required: true },
 });
 
 MessageSchema.virtual('timestamp_formatted').get(() => {
-    return format(this.timestamp, 'PPPp');
+    return dayjs(this.timestamp).toDate();
 });
 
 module.exports = mongoose.model('Message', MessageSchema);

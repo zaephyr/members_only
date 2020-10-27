@@ -65,3 +65,91 @@ exports.create_member = [
         }
     },
 ];
+
+exports.get_dashboard = (req, res, next) => {
+    res.render('dashboard', { title: 'Dashboard' });
+};
+
+exports.update_status = [
+    body('upgrade').trim().isLength({ min: 1 }).escape().withMessage('Must be specified.'),
+
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (req.body.upgrade === 'odin project') {
+            if (!errors.isEmpty()) {
+                res.render('/');
+
+                return;
+            } else {
+                // Data from form is valid. Update the record.
+                Member.findOneAndUpdate(
+                    { username: res.locals.currentUser.username },
+                    { status: 'member' },
+                    (err, data) => {
+                        if (err) return next(err);
+                        console.log(data);
+                        res.redirect('/');
+                    }
+                );
+            }
+        }
+    },
+];
+
+exports.update_password = [
+    body('password')
+        .trim()
+        .isLength({ min: 6 })
+        .escape()
+        .withMessage('Password must be specified and of atleast 6 length.'),
+    body('newpass')
+        .trim()
+        .isLength({ min: 6 })
+        .escape()
+        .withMessage('New password must be specified and of atleast 6 length.'),
+
+    async (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            // There are errors. Render form again with sanitized values/errors messages.
+            res.render('dashboard', { errors: errors.array() });
+            return;
+        } else {
+            const user = res.locals.currentUser.username;
+            const newpass = req.body.newpass;
+            const oldpass = req.body.password;
+            let hashedPass = await bcrypt.hash(newpass, 10);
+
+            try {
+                console.log(user);
+                Member.findOne({ username: user }, (err, user) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    if (!user) {
+                        console.log('user');
+
+                        return next(null, false, { msg: 'Incorrect username' });
+                    }
+                    bcrypt.compare(oldpass, user.password, (err, res) => {
+                        if (res) {
+                            Member.findOneAndUpdate({ username: user }, { password: hashedPass }, (err, data) => {
+                                if (err) return next(err);
+                                console.log('succes');
+                            });
+
+                            return next(null, user);
+                        } else {
+                            // passwords do not match!
+                            return next(null, false, { msg: 'Incorrect password' });
+                        }
+                    });
+                });
+            } catch (error) {
+                next(error);
+            }
+        }
+    },
+];

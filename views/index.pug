@@ -2,15 +2,19 @@ extends layout
 
 block content
   if currentUser
-    form.flex.h-8.mt-24.items-center(method="POST" action="/message")
+    form.flex.h-8.items-center.z-10.mt-6.fixed(method="POST" action="/message")
       input(class="form-cell" id="message" name="message" type="textarea" placeholder="Write message here...")
-      div.btn.ml-3.bg-blue-400.whitespace-no-wrap(type="submit") Post It!
-
-    h1= currentUser.username 
-    h1= currentUser.status
-  p Welcome to #{title}
-
-  .card Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci asperiores fuga incidunt, ea nisi tempore quae eum vel. Ex commodi aut mollitia eaque soluta sed. Odit libero error ut recusandae.
-    .flex.justify-end.text-sm.font-thin
-      p by nekdo
-      p.ml-2 at 12:53, 22/10/20
+      button.btn.ml-3.bg-blue-400.whitespace-no-wrap(type="submit") Post It!
+  
+  each msg in message_list
+    .card.relative #{msg.message} 
+      if currentUser
+        if currentUser.status != "novice"
+          .flex.justify-end.text-sm.font-thin
+            p.mr-2 by 
+            a(href=`/users/${msg.member._id}` class="home hover:underline") #{msg.member.username}
+            p.ml-2 on #{msg.timestamp_formatted}
+            if currentUser.status == "elder"
+              form(method="POST" action=`/message/${msg._id}/delete`)
+                input(type="hidden" name=msg._id required )  
+                button.absolute.btn.bg-red-400(style="top:0; left: 800px;" type="submit") Delete Msg

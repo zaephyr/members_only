@@ -24,7 +24,7 @@ const mongoDB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_
     '<DBNAME>',
     process.env.DATABASE_NAME
 );
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

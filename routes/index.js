@@ -1,16 +1,19 @@
 var express = require('express');
 var router = express.Router();
-const passport = require('passport');
 
 let member_controller = require('../controllers/memberController');
+let message_controller = require('../controllers/messageController');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Express' });
-});
+router.get('/', message_controller.message_list);
+
+router.post('/message', message_controller.post_message);
+router.post('/message/:id/delete', message_controller.delete_message);
 
 router.get('/signup', member_controller.signup_form);
-
 router.post('/signup', member_controller.create_member);
+router.get('/dashboard', member_controller.get_dashboard);
+router.post('/upgrade', member_controller.update_status);
+router.post('/change-password', member_controller.update_password);
 
 module.exports = router;
