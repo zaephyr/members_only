@@ -13,8 +13,10 @@ block content
           .flex.justify-end.text-sm.font-thin
             p.mr-2 by 
             a(href=`/users/${msg.member._id}` class="home hover:underline") #{msg.member.username}
-            p.ml-2 on #{msg.timestamp_formatted}
+            p.ml-2 on #{msg.timestamp}
             if currentUser.status == "elder"
               form(method="POST" action=`/message/${msg._id}/delete`)
                 input(type="hidden" name=msg._id required )  
                 button.absolute.btn.bg-red-400(style="top:0; left: 800px;" type="submit") Delete Msg
+
+

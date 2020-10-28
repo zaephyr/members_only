@@ -3,19 +3,18 @@ extends layout
 block content
     div
         div.max-h-screen.h-screen.flex.flex-col.items-center.justify-evenly
-            if currentUser.status == "novice"
-                form.flex.flex-col.items-center(method="POST" action="/upgrade")
-                    input(class="form-cell" id="upgrade" name="upgrade" type="text" placeholder="Write message here...")
-                    button.btn.mt-2.bg-blue-400.whitespace-no-wrap(type="submit") Guess!
+            form.flex.flex-col.items-center(method="POST" action="/upgrade")
+                input(class="form-cell" id="upgrade" name="upgrade" type="text" placeholder="Write message here...")
+                button.btn.mt-2.bg-blue-400.whitespace-no-wrap(type="submit") Guess!
         
-            form.flex.flex-col.items-center(method="POST" action="/change-password")
-                label(class="form-label" for="password") Old password
-                input(class="form-cell -mb-4" id="password" name="password" required type="password" placeholder="Old Password")
-                label(class="form-label" for="newpass") New password
-                input(class="form-cell" id="newpass" name="newpass" type="password" placeholder="New Password")
-                button.btn.mt-2.bg-blue-400.whitespace-no-wrap(type="submit") Change Password
+            //- form.flex.flex-col.items-center(method="POST" action="/change-password")
+            //-     label(class="form-label" for="password") Old password
+            //-     input(class="form-cell -mb-4" id="password" name="password" required type="password" placeholder="Old Password")
+            //-     label(class="form-label" for="newpass") New password
+            //-     input(class="form-cell" id="newpass" name="newpass" type="password" placeholder="New Password")
+            //-     button.btn.mt-2.bg-blue-400.whitespace-no-wrap(type="submit") Change Password
 
-            button.btn.bg-red-400 Delete Account
+            //- button.btn.bg-red-400 Delete Account
 
         
 

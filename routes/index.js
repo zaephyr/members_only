@@ -14,6 +14,5 @@ router.get('/signup', member_controller.signup_form);
 router.post('/signup', member_controller.create_member);
 router.get('/dashboard', member_controller.get_dashboard);
 router.post('/upgrade', member_controller.update_status);
-router.post('/change-password', member_controller.update_password);
 
 module.exports = router;
