@@ -1,10 +1,7 @@
 <br />
-<p align="center">
-  <a href="https://github.com/zaephyr/members_only">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Members_only</h3>
+<p align="center"> 
+ <h3 align="center">Members_only</h3>  
+  <p align="center">
     App for Odin Project Node.js course
     <br />
     <br />
@@ -27,9 +24,9 @@
 ## About The Project
 
 Simple twitter-like app. There are three tiers of members.
-Novice - can post messages.
-Member - can see message authors.
-Elder - can delete messages.
+* Novice - can post messages.
+* Member - can see message authors.
+* Elder - can delete messages.
 
 To get into upper teirs you need to guess "odin project" for member status or "give me power" for elder status.
 
