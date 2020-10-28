@@ -1,8 +1,7 @@
 const Message = require('../models/message.js');
-var mongoose = require('mongoose');
+var format = require('date-fns/format');
 const async = require('async');
 const { body, validationResult } = require('express-validator');
-var dayjs = require('dayjs');
 
 exports.post_message = [
     body('message').trim().isLength({ min: 1 }).escape(),
@@ -17,7 +16,7 @@ exports.post_message = [
             try {
                 const user = res.locals.currentUser;
                 console.log(user);
-                const dateTime = dayjs(Date.now(), 'MMM D, YYYY h:mm A').toString();
+                const dateTime = format(new Date(), 'PPPp');
                 const message = new Message({
                     message: req.body.message,
                     timestamp: dateTime,

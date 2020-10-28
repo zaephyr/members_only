@@ -2,7 +2,7 @@ extends layout
 
 block content
   if currentUser
-    form.flex.h-8.items-center.z-10.mt-6.fixed(method="POST" action="/message")
+    form.flex.h-8.items-center.z-20.mt-6.fixed(method="POST" action="/message")
       input(class="form-cell" id="message" name="message" type="textarea" placeholder="Write message here...")
       button.btn.ml-3.bg-blue-400.whitespace-no-wrap(type="submit") Post It!
   
@@ -18,5 +18,4 @@ block content
               form(method="POST" action=`/message/${msg._id}/delete`)
                 input(type="hidden" name=msg._id required )  
                 button.absolute.btn.bg-red-400(style="top:0; left: 800px;" type="submit") Delete Msg
-
 
