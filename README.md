@@ -5,7 +5,7 @@
     App for Odin Project Node.js course
     <br />
     <br />
-    <a href="https://github.com/zaephyr/members_only">View Demo</a>
+    <a href="https://members-only1882.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/zaephyr/members_only/issues">Report Bug</a>
    </p>
